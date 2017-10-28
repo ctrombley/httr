@@ -8,15 +8,17 @@
 \usage{
 init_oauth2.0(endpoint, app, scope = NULL, user_params = NULL,
   type = NULL, use_oob = getOption("httr_oob_default"),
-  is_interactive = interactive(), use_basic_auth = FALSE,
-  config_init = list(), client_credentials = FALSE)
+  oob_value = NULL, is_interactive = interactive(),
+  use_basic_auth = FALSE, config_init = list(),
+  client_credentials = FALSE)
 
-oauth2.0_authorize_url(endpoint, app, scope, redirect_uri = app$redirect_uri,
-  state = nonce())
+oauth2.0_authorize_url(endpoint, app, scope,
+  redirect_uri = app$redirect_uri, state = nonce())
 
-oauth2.0_access_token(endpoint, app, code, user_params = NULL, type = NULL,
-  use_basic_auth = FALSE, redirect_uri = app$redirect_uri,
-  client_credentials = FALSE, config = list())
+oauth2.0_access_token(endpoint, app, code, user_params = NULL,
+  type = NULL, use_basic_auth = FALSE,
+  redirect_uri = app$redirect_uri, client_credentials = FALSE,
+  config = list())
 }
 \arguments{
 \item{endpoint}{An OAuth endpoint, created by \code{\link{oauth_endpoint}}}
@@ -36,6 +38,9 @@ access token.}
 Otherwise, provide a URL to the user and prompt for a validation
 code. Defaults to the of the \code{"httr_oob_default"} default,
 or \code{TRUE} if \code{httpuv} is not installed.}
+
+\item{oob_value}{if provided, is used as a custom oob callback value.
+Requires \code{use_oob = TRUE}.}
 
 \item{is_interactive}{DEPRECATED}
 
